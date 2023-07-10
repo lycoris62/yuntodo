@@ -30,4 +30,12 @@ public class Todo extends BaseEntity {
         this.isDone = false;
         this.username = username;
     }
+
+    public void setContent(String newContent) {
+        this.content = newContent;
+    }
+
+    public void setIsDone(boolean updatedIsDone) {
+        this.isDone = updatedIsDone;
+    }
 }
