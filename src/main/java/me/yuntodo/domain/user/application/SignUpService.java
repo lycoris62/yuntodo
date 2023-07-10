@@ -36,7 +36,7 @@ public class SignUpService {
         }
     }
 
-    private static void validateConfirmPassword(SignUpRequest request) {
+    private void validateConfirmPassword(SignUpRequest request) {
         if (!request.getPassword().equals(request.getConfirmPassword())) {
             throw new IllegalArgumentException("다른 확인 비밀번호");
         }
