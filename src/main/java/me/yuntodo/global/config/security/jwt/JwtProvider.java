@@ -81,14 +81,14 @@ public class JwtProvider {
                 .orElseThrow(() -> new IllegalArgumentException("없는 유저"));
     }
 
-    private static Map<String, Object> createHeader() {
+    private Map<String, Object> createHeader() {
         return Map.of(
                 "typ", "JWT",
                 "alg", "HS256"
         );
     }
 
-    private static Date createExpiredDate() {
+    private Date createExpiredDate() {
         Date ext = new Date();
         ext.setTime(ext.getTime() + ACCESS_TOKEN_EXPIRE_TIME);
         return ext;
