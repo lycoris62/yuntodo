@@ -6,12 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 import me.yuntodo.domain.todo.application.*;
 import me.yuntodo.domain.todo.dto.*;
 import me.yuntodo.global.common.response.SuccessResponse;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Slf4j
@@ -28,13 +28,10 @@ public class TodoController {
 
     @GetMapping("/{date}")
     public ResponseEntity<List<TodoResponse>> getTodolist(
-            @PathVariable String date,
+            @PathVariable @DateTimeFormat(pattern = "yyyyMMdd") LocalDate date,
             Authentication authentication) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-        LocalDate localDate = LocalDate.parse(date, formatter);
-
-        List<TodoResponse> todoList = getTodoListService.getTodoList(authentication.getName(), localDate);
+        List<TodoResponse> todoList = getTodoListService.getTodoList(authentication.getName(), date);
         return ResponseEntity.ok(todoList);
     }
 
