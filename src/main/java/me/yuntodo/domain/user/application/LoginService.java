@@ -22,7 +22,7 @@ public class LoginService {
                 .orElseThrow(() -> new IllegalArgumentException("없는 유저"));
 
         String accessToken = jwtProvider.createToken(user.getUsername());
-        log.info("login success : {}, accessToken : {}", request.getUsername(), accessToken);
-        return new LoginResponse(accessToken);
+        log.info("login success | username : {}, accessToken : {}", request.getUsername(), accessToken);
+        return new LoginResponse("success", accessToken);
     }
 }
